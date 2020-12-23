@@ -1,8 +1,8 @@
 <template>
 
     <div>
-        <h3 v-if="users">Hi, {{ users.firstName }} {{ users.lastName }}</h3>
-        <h3 v-if="!users">Hello</h3>    
+        <h3 v-if="user">Hi, {{ user.firstName }} {{ user.lastName }}</h3>
+        <h3 v-if="!user">Hello</h3>
     </div>
 
 </template>
@@ -18,11 +18,14 @@ export default {
             user: null
         }
     },
+    mounted() {
+        this.user = JSON.parse(localStorage.getItem('user'));
+    },
     async created() {
-        const response = await axios.get('api/auth/', 
-            { headers: {'Content-Type': 'application/json'} });
+        const response = await axios.get('api/auth/');
 
-        console.log(response);
+        this.user = response.data;
+
     }
 }
 </script>

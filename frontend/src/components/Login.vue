@@ -35,8 +35,10 @@ export default {
                 password: this.password
             }, 
             { headers: {'Content-Type': 'application/json'} });
-
-            console.log(response)
+            
+            localStorage.setItem('user', response.data);
+            
+            this.$router.push('/');
         }
     }
 }
