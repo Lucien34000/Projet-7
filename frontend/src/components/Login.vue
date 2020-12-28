@@ -18,28 +18,29 @@
 
 <script>
 
-import axios from 'axios';
+    import axios from 'axios';
+    
 
-export default {
-    name: 'Login',
-    data() {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        async handleSubmit() {
-            const response = await axios.post('api/auth/login', {
-                email: this.email,
-                password: this.password
-            }, 
-            { headers: {'Content-Type': 'application/json'} });
-            
-            localStorage.setItem('user', response.data);
-            
-            this.$router.push('/');
+    export default {
+        name: 'Login',
+        data() {
+            return {
+                email: '',
+                password: ''
+            }
+        },
+        methods: {
+            async handleSubmit() {
+                const response = await axios.post('http://localhost:3000/api/auth/login', {
+                    email: this.email,
+                    password: this.password
+                }, 
+                { headers: {'Content-Type': 'application/json'} });
+                
+                localStorage.setItem('user', response.data);
+                
+                 this.$router.push('/');
+            }
         }
     }
-}
 </script>

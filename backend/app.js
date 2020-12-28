@@ -3,6 +3,7 @@ const express = require('express');
 const helmet = require("helmet");
 const app = express();
 const routesUsers = require('./routes/user');
+const cors = require('cors');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,8 +12,8 @@ app.use((req, res, next) => {
     next();
   });
 
-  
-app.use (helmet()); 
+app.use(cors());
+app.use(helmet()); 
 app.use(bodyParser.json());
 
 app.use('/api/auth', routesUsers);
