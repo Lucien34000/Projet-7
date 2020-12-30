@@ -25,21 +25,21 @@
         name: 'Login',
         data() {
             return {
-                email: '',
-                password: ''
+                email: null,
+                password: null
             }
         },
         methods: {
             async handleSubmit() {
-                const response = await axios.post('http://localhost:3000/api/auth/login', {
+                const response = await axios.post('http://localhost:3000/api/login', {
                     email: this.email,
                     password: this.password
                 }, 
                 { headers: {'Content-Type': 'application/json'} });
                 
                 localStorage.setItem('user', response.data);
-                
-                 this.$router.push('/');
+                this.$store.dispatch('user', response.data.user);
+                this.$router.push('/');
             }
         }
     }

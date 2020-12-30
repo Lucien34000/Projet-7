@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <h3 v-if="user">Hi, {{ user.firstName }} {{ user.lastName }}</h3>
+        <h3 v-if="user">Hi, Mister</h3>
         <h3 v-if="!user">Hello</h3>
     </div>
 
@@ -10,19 +10,16 @@
 <script>
 
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'Home',
-    data() {
-        return {
-            user: ''
-        }
-    },
+    
     mounted() {
         this.user = JSON.parse(localStorage.getItem('user'));
     },
         async created() {
-        const response = await axios.get('http://localhost:3000/api/auth/', {
+        const response = await axios.get('http://localhost:3000/api', {
                     email: this.email,
                     password: this.password
                 }, 
@@ -31,6 +28,9 @@ export default {
                 localStorage.setItem('user', response.data);
 
         this.user = response.data;
+    },
+    computed: {
+        ...mapGetters(['user'])
     }
      
 }

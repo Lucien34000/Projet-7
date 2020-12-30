@@ -57,7 +57,24 @@ class User {
         })
     }
     update(sqlInserts){
-
+        let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE id = ?';
+        sql = mysql.format(sql, sqlInserts);
+        return new Promise((resolve, reject) => {
+            bddConnect.query(sql, function(err, result){
+                if (err) return reject({error : 'fonction indisponible'});
+                resolve({message : 'Informations mises à jour !'});
+            })
+        })
+    }
+    delete(sqlInserts){
+        let sql = 'DELETE FROM users WHERE id = ?';
+        sql = mysql.format(sql, sqlInserts)
+        return new Promise((resolve, reject) => {
+            bddConnect.query(sql, function(err, result){
+                if (err) return reject({error: 'fonction indisponible'});
+                resolve({message: 'Utilisateur supprimé avec succès !'});
+            })
+        })
     }
 }
 

@@ -6,11 +6,7 @@ import Signup from '../components/Signup.vue'
 
 Vue.use(Router)
 
-export default new Router({
-
-  mode: 'history',
-  
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'Home',
@@ -28,7 +24,10 @@ export default new Router({
     }
   ]
 
-})
+  const router = new Router({
+    routes,
+    mode: 'history'
+  })
 
 
-
+export default router;

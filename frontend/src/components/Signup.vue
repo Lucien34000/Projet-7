@@ -46,7 +46,7 @@ export default {
     methods: {
         sendSignUp() {
             if ((this.dataSignUp.email !== null || this.dataSignUp.firstName !== null || this.dataSignUp.lastName !== null || this.dataSignUp.password !== null)) {
-                axios.post("http://localhost:3000/api/auth/signup", this.dataSignUp)
+                axios.post("http://localhost:3000/api/signup", this.dataSignUp)
                 .then((response) => {
                     console.log(response);
                     this.$router.push('/login');
