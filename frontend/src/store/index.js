@@ -4,7 +4,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  user: null
+  user: {
+    userId: null,
+    token: "",
+    moderation: false
+}
 };
 
 const store = new Vuex.Store({
