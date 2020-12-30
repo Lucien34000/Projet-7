@@ -4,16 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  user: {
-    userId: null,
-    token: "",
-    moderation: false
-}
+    user: null
 };
 
 const store = new Vuex.Store({
   state,
-  guetters: {
+  getters: {
     user: (state) => {
       return state.user;
     }

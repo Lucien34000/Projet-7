@@ -13,7 +13,7 @@
           </ul>
           <ul class="navbar-nav ml-auto" v-if="user">
             <li class="nav-item">
-              <router-link href="/" class="nav-link" @click="handleLogout">Logout</router-link>
+              <router-link to="/login" class="nav-link" @click="handleLogout">Logout</router-link>
             </li>
           </ul>
         </div>
@@ -29,9 +29,9 @@ export default {
     name: 'Nav',
     methods: {
       handleLogout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         this.$store.dispatch('user', null);
-        this.$router.push('/');
+        this.$router.push('/login');
       }
     },
     computed: {
