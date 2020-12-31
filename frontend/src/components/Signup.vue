@@ -23,6 +23,7 @@
         </div>
 
         <button class="btn btn-primary btn-block">Sign Up</button>
+        <p v-if="msg" class="text-danger mt-4"> {{ message }} </p>
 
     </form>
 </template>
@@ -40,7 +41,9 @@ export default {
                 lastName: null,
                 email: null,
                 password: null
-            }
+            },
+            msg: false,
+            message: ""
         }
     },
     methods: {
@@ -51,7 +54,11 @@ export default {
                     console.log(response);
                     this.$router.push('/login');
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => {
+                    console.log(error)
+                    this.message = error;
+                    this.msg = true;
+                });
             } else {
                 alert( " Le mot de passe n'est pas bon.")
             }

@@ -12,8 +12,8 @@
             </li>
           </ul>
           <ul class="navbar-nav ml-auto" v-if="user">
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link" @click="handleLogout">Logout</router-link>
+            <li class="nav-item"  @click="handleLogout">
+              <router-link to="/login" class="nav-link">Logout</router-link>
             </li>
           </ul>
         </div>
@@ -22,23 +22,18 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 import { mapGetters } from 'vuex'
 
 export default {
     name: 'Nav',
     methods: {
-      async handleLogout() {
-        await axios.post("http://localhost:3000/api/", {
-          userId: this.userId,
-          token: this.token,
-          moderation: this.moderation
-        },
-        { headers: {'Content-Type': 'application/json'}});
-        
-          localStorage.clear();
-          this.$store.dispatch('user', null);
-          this.$router.push('/login');
+     handleLogout() {
+        localStorage.userId = "";
+        localStorage.token = "";
+        localStorage.moderation = "";
+        this.$store.dispatch('user', null);
+        this.$router.push('/');
       }
     },
     computed: {
