@@ -39,11 +39,11 @@ exports.login = (req, res, next) => {
 };
 
 exports.profile = (req, res, next) => {
-    const token = req.headers.autorization.plit(' ')[1];
+    const token = req.headers.autorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
     let sqlInserts = [userId];
-    userModels.porifle(sqlInserts)
+    userModels.profile(sqlInserts)
         .then((response) => {
             res.status(200).json(JSON.stringify(response))
         })
@@ -72,8 +72,9 @@ exports.update = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
     const token = req.headers.autorization.split(' ')[1];
-    const deocdedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
+    let sqlInserts = [userId];
     userModels.delete(sqlInserts)
         .then((response) => {
             res.status(200).json(JSON.stringify(response))

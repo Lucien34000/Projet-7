@@ -22,16 +22,23 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
     name: 'Nav',
     methods: {
-      handleLogout() {
-        localStorage.removeItem('user');
-        this.$store.dispatch('user', null);
-        this.$router.push('/login');
+      async handleLogout() {
+        await axios.post("http://localhost:3000/api/", {
+          userId: this.userId,
+          token: this.token,
+          moderation: this.moderation
+        },
+        { headers: {'Content-Type': 'application/json'}});
+        
+          localStorage.clear();
+          this.$store.dispatch('user', null);
+          this.$router.push('/login');
       }
     },
     computed: {

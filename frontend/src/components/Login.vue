@@ -36,8 +36,8 @@
                 }, 
                 { headers: {'Content-Type': 'application/json'} });
                 
-                localStorage.setItem('user', response.data);
-                this.$store.dispatch('user', response.data.user);
+                // localStorage.setItem('user', response.data);
+                this.$store.dispatch('user', response.data);
                 this.$router.push('/');
             }
         }

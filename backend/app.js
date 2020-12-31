@@ -2,8 +2,10 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const helmet = require("helmet");
 const app = express();
-const routesUsers = require('./routes/user');
 const cors = require('cors');
+const routesUsers = require('./routes/userRoad');
+const routesPosts = require('./routes/postRoad');
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,5 +19,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 
 app.use('/api', routesUsers);
+app.use('/api/posts', routesPosts);
 
-  module.exports = app;
+module.exports = app;
